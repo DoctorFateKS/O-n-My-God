@@ -1,0 +1,116 @@
+  [1m[35m (55.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (14.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4996563922554863715)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (4.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-06-20 15:25:19.998279', '2025-06-20 15:25:19.998282') RETURNING "key"[0m
+Migrating to DeviseCreateUsers (20250620152411)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250620152411') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(4996563922554863715)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:43:50 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/kevins/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-7.1.5.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/kevins/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/railties-7.1.5.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.1ms | Allocations: 366)
+Completed 200 OK in 57ms (Views: 14.9ms | ActiveRecord: 0.0ms | Allocations: 8720)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:46:43 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 3.9ms | Allocations: 186)
+  Rendered layout layouts/application.html.erb (Duration: 518.4ms | Allocations: 88230)
+Completed 500 Internal Server Error in 553ms (ActiveRecord: 0.0ms | Allocations: 92459)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `javascript_importmap_tags' for an instance of #<Class:0x0000775243447638>):
+     8:     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+     9: 
+    10:     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    11:     <%= javascript_importmap_tags %>
+    12:   </head>
+    13: 
+    14:   <body class="min-h-screen flex flex-col">
+  
+app/views/layouts/application.html.erb:11
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:48:24 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.7ms | Allocations: 91)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 2640)
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.0ms | Allocations: 3578)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:49:41 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 55.4ms | Allocations: 7337)
+Completed 200 OK in 58ms (Views: 57.5ms | ActiveRecord: 0.0ms | Allocations: 7567)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:49:44 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | Allocations: 2117)
+Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.0ms | Allocations: 2341)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:49:44 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 2144)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.0ms | Allocations: 2368)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:49:45 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 2132)
+Completed 200 OK in 11ms (Views: 11.2ms | ActiveRecord: 0.0ms | Allocations: 2356)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:53:18 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.7ms | Allocations: 95)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 2659)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.0ms | Allocations: 3553)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:54:08 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.8ms | Allocations: 91)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2624)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.0ms | Allocations: 3515)
+
+
+Started GET "/" for 127.0.0.1 at 2025-06-20 17:57:24 +0200
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 1.3ms | Allocations: 93)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 2752)
+Completed 200 OK in 15ms (Views: 14.2ms | ActiveRecord: 0.0ms | Allocations: 3646)
+
+

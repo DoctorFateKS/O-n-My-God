@@ -1,16 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="bg-white text-black dark:bg-gray-900 dark:text-white">
   <head>
-    <title>ONMyGod</title>
+    <title>O(n) My God ! - The Overengineered Search Playground You Didn’t Know You Needed</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="min-h-screen flex flex-col">
+    <header class="bg-gray-100 dark:bg-gray-800 shadow">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">O(n) My God !</h1>
+        <nav>
+          <%= link_to "Learning Lab", root_path, class: "mr-4 hover:underline" %>
+          <%= link_to "Custom Search Playground", "#", class: "hover:underline" %>
+          <%= link_to "Algorithm Comparator", "#", class: "hover:underline" %>
+          <%= link_to "bsearch in Action", "#", class: "hover:underline" %>
+          <%= link_to "Master the Search", "#", class: "hover:underline" %>
+        </nav>
+      </div>
+    </header>
+
+    <% flash.each do |type, message| %>
+      <div class="container mx-auto px-4 py-2">
+        <div class="p-3 rounded-md bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
+          <%= message %>
+        </div>
+      </div>
+    <% end %>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+      <%= yield %>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 text-center py-4 text-sm">
+      © <%= Date.today.year %> O(n) My God ! - Tous droits réservés.
+    </footer>
   </body>
 </html>
