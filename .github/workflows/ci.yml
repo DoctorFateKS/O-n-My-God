@@ -1,4 +1,4 @@
-name: CI
+name: Ruby on Rails CI
 
 on:
   push:
@@ -25,31 +25,36 @@ jobs:
 
     env:
       RAILS_ENV: test
-      DATABASE_URL: postgres://postgres:password@localhost:5432/test
+      DATABASE_URL: postgres://postgres:password@localhost:5432/o_n_my_god_test
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3 # adapte selon ta version
+          ruby-version: 3.3.5
           bundler-cache: true
 
-      - name: Install system dependencies
-        run: sudo apt-get install -y libvips postgresql-client
-
-      - name: Set up database
+      - name: Install dependencies
         run: |
-          cp config/database.yml.github config/database.yml
-          bin/rails db:create
-          bin/rails db:schema:load
+          sudo apt-get update
+          sudo apt-get install -y libvips postgresql-client
+          gem install bundler
+          bundle install
 
-      - name: Rubocop
+      - name: Prepare database
+        run: |
+          cp config/database.yml config/database.yml.bak
+          echo "test:\n  adapter: postgresql\n  encoding: unicode\n  database: o_n_my_god_test\n  username: postgres\n  password: password\n  host: localhost" > config/database.yml
+          bin/rails db:prepare
+
+      - name: Run Rubocop
         run: bundle exec rubocop --parallel
 
-      - name: Brakeman
+      - name: Run Brakeman
         run: bundle exec brakeman -q -w2
 
-      - name: Run RSpec
+      - name: Run RSpec tests
         run: bundle exec rspec
